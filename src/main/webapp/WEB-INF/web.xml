@@ -19,6 +19,10 @@
         <servlet-name>LifeServlet</servlet-name>
         <servlet-class>com.ChenJiudong.week3.demo.LifeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HttpServlet</servlet-name>
+        <servlet-class>com.ChenJiudong.week2.demo.HttpServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>chen</servlet-name>
         <url-pattern>/hello</url-pattern>
