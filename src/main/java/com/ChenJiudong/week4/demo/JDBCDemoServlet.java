@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-//use webbaseselvet
 @WebServlet(
         urlPatterns = {"jdbc"},
         initParams = {
@@ -55,7 +54,6 @@ public class JDBCDemoServlet extends HttpServlet {
         try {
             ResultSet rs=con.createStatement().executeQuery(sql);
             while(rs.next()){
-                //get from rs - print -
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
