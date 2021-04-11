@@ -3,11 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <listener>
+        <listener-class>com.ChenJiudong.week6.demo.JdbcServletContextListener</listener-class>
+    </listener>
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.ChenJiudong.week3.demo.RegisterServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>LifeServlet</servlet-name>
         <servlet-class>com.ChenJiudong.week3.demo.LifeServlet</servlet-class>
@@ -24,7 +28,23 @@
        <servlet-name>ConfigDemoServlet</servlet-name>
        <servlet-class> com.ChenJiudong.week4.demo.ConfigDemoServlet</servlet-class>
    </servlet>
-   
+    <servlet>
+        <servlet-name>RedirectServlet</servlet-name>
+        <servlet-class>com.ChenJiudong.week6.demo.RedirectServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>com.ChenJiudong.week6.demo.SearchServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RedirectServlet</servlet-name>
+        <url-pattern>re</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>se</url-pattern>
+    </servlet-mapping>
+
 
     <servlet-mapping>
         <servlet-name>HttpServlet</servlet-name>

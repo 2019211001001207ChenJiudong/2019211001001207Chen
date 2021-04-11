@@ -67,7 +67,6 @@ public class JDBCDemoServlet extends HttpServlet {
         try {
             ResultSet rs=con.createStatement().executeQuery(sql);
             while(rs.next()){
-                //get from rs - print -
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
