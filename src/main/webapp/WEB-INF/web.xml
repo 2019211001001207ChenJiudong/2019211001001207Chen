@@ -41,6 +41,10 @@
         <servlet-class>com.ChenJiudong.week5.demo.LoginServlet</servlet-class>
     </servlet>
     <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>lo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RedirectServlet</servlet-name>
         <url-pattern>re</url-pattern>
     </servlet-mapping>
