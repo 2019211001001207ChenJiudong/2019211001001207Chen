@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.lang.Object;
 
 @WebListener()
 public class JdbcServletContextListener implements ServletContextListener {
@@ -17,18 +18,15 @@ public class JdbcServletContextListener implements ServletContextListener {
     }
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
+    public void contextInitialized(ServletContextEvent servletContextEvent) {
         Connection dbConn;
-        ServletContext c = sce.getServletContext();
-//        System.out.println("进入了contextInitialized方法");
-//        System.out.println(c.getInitParameter("url"));
+        ServletContext c = servletContextEvent.getServletContext();
         try {
             Class.forName(c.getInitParameter("driver"));
             dbConn = DriverManager.getConnection(c.getInitParameter("url"),
                     c.getInitParameter("Username"),
                     c.getInitParameter("Password"));
             c.setAttribute("dbConn",dbConn);
-//            System.out.println(dbConn);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,7 +34,7 @@ public class JdbcServletContextListener implements ServletContextListener {
     }
 
     @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-
+    public void contextDestroyed(ServletContextEvent servletContextEvent) {
+        servletContextEvent.getServletContext().removeAttribute("dbConn");
     }
 }

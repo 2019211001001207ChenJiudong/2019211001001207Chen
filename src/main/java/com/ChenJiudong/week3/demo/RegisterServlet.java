@@ -52,6 +52,7 @@ public class RegisterServlet extends HttpServlet {
         writer.println("<table border=\"2\"width=\"80%\"borderColor=\"pink\"bgcolor=\"#DCE3F5\"><tr><td>ID</td><td>UserName</td><td>Password</td><td>Email</td><td>Gender</td><td>Birthdate</td></tr>");
         for (int x = 0; x < a; x++) {for (int y = 0; y < 6; y++) { writer.println("<td>" + r[x][y] + "</td>");}
             writer.println("</tr>"); }writer.println("</table>");
+        response.sendRedirect("login.jsp");
     }}
 
 

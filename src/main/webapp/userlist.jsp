@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.sql.ResultSet" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2021/4/11
@@ -6,18 +6,31 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@include file="header.jsp" %>
-<h2>User List</h2>
-<table>
-    <tr><td>ID</td><td>Username</td><td>Password</td><td>Email</td><td>Gender</td><td>Birthday</td></tr>
-    <%@page import="java.sql.*" %>
+<h1>User List</h1>
+<table border=3>
+    <tr>
+        <th>ID</th><th>UserName</th><th>PassWord</th><th>Email</th><th>Gender</th><th>Birth</th>
+    </tr>
     <%
-        ResultSet rs = (ResultSet)request.getAttribute("rsname");
-        while(rs.next()){
-            out.println("<tr><td>"+rs.getInt("id")+"</td><td>"+rs.getString("name")+"</td><td>"
-                    +rs.getString("password")+"</td><td>"+rs.getString("email")+"</td><td>"
-                    +rs.getString("gender")+"</td><td>"+rs.getString("birthdate")+"</td></tr>");
+        ResultSet rs = (ResultSet) request.getAttribute("rsname");
+        if(rs==null) {
+    %>
+    <tr><td>No Data!!!</td></tr>
+    <%
+        } else {
+            while (rs.next()) {
+                out.print("<tr>");
+                out.print("<td>"+rs.getInt("id")+"</td>");
+                out.print("<td>"+rs.getString("username")+"</td>");
+                out.print("<td>"+rs.getString("password")+"</td>");
+                out.print("<td>"+rs.getString("email")+"</td>");
+                out.print("<td>"+rs.getString("gender")+"</td>");
+                out.print("<td>"+rs.getDate("birthdate")+"</td>");
+                out.print("<tr>");
+            }
         }
     %>
+
 </table>
 
 <%@include file="footer.jsp" %>

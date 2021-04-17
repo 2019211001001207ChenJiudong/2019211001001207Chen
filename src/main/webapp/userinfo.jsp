@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.ChenJiudong.model.User" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2021/4/11
@@ -7,6 +7,10 @@
 --%>
 <%@include file="header.jsp" %>
 <%@page  contentType="textml;charset=UTF-8" language="java"%>
+<%
+    User user = (User)request.getAttribute("user");
+
+%>
 
 <h2>User Info</h2>
     <table border="1" >
