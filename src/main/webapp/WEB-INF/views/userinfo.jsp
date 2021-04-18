@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.ChenJiudong.model.User" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2021/4/11
@@ -7,15 +7,18 @@
 --%>
 <%@include file="header.jsp" %>
 <%@page  contentType="textml;charset=UTF-8" language="java"%>
+<%
+    User user = (User)request.getAttribute("user");
 
+%>
 <h2>User Info</h2>
     <table border="1" >
-        <tr>
-            <td>Username</td><td><%=request.getAttribute("Username")%></td> </tr>
-            <td>Password</td><td><%=request.getAttribute("Username")%></td> </table>
-            <td>Email</td> <td><%=request.getAttribute("Email")%></td> </tr>
-            <td>Gender</td><td><%=request.getAttribute("Gender")%></td> </tr>
-            <td>Birthdate</td> <td><%=request.getAttribute("Birthdate")%></td>
-        </tr>
-    </table>
+    <tr>
+        <td>Username</td><td><%=request.getAttribute("Username")%></td> </tr>
+    <td>Password</td><td><%=request.getAttribute("Password")%></td> </tr>
+    <td>Email</td> <td><%=request.getAttribute("Email")%></td> </tr>
+    <td>Gender</td><td><%=request.getAttribute("Gender")%></td> </tr>
+    <td>Birthdate</td> <td><%=request.getAttribute("Birthdate")%></td>
+</tr>
+</table>
 <%@include file="footer.jsp" %>
