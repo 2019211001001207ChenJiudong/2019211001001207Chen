@@ -44,10 +44,10 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.findByUsernamePassword(con,username,password);
             if(user!=null) {
                 request.setAttribute("user",user);
-                request.getRequestDispatcher("WEB-INFiews/userInfo.jsp").forward(request,response);
+                request.getRequestDispatcher("WEB-INFiews/userinfo.jsp").forward(request,response);
             } else {
                 request.setAttribute("message","Username or Password Error!!!");
-                request.getRequestDispatcher("WEB-INFiews/Login.jsp").forward(request,response);
+                request.getRequestDispatcher("WEB-INFiews/login.jsp").forward(request,response);
             }
         } catch (SQLException e) {
             e.printStackTrace();
