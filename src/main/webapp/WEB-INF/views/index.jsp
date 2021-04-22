@@ -9,5 +9,7 @@
         <option value= "google">Google</option>
         <select>
             <input type="submit" value="Search"/>
+        </select>
+    </select>
 </form>
 <%@include file="footer.jsp" %>

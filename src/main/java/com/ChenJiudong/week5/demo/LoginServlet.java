@@ -43,11 +43,41 @@ public class LoginServlet extends HttpServlet {
         try {
             User user = userDao.findByUsernamePassword(con,username,password);
             if(user!=null) {
-                request.setAttribute("user",user);
-                request.getRequestDispatcher("WEB-INFiews/userinfo.jsp").forward(request,response);
+                //create cookie
+                //Cookie c=new Cookie("sessionid",""+user.getId());
+                //c.setMaxAge(10*60);
+                //response.addCookie(c);
+                //add code for remember me
+                String rememberMe=request.getParameter("rememberMe");
+                if(rememberMe!=null && rememberMe.equals("1")){
+                    //create 3 cookies
+                    Cookie usernameCookie=new Cookie("cUsername",user.getUsername());
+                    Cookie passwordCookie=new Cookie("cPassword",user.getPassword());
+                    Cookie rememberMeCookie=new Cookie("cRememberMe",request.getParameter("rememberMe"));
+                    //set age
+                    usernameCookie.setMaxAge(5);
+                    passwordCookie.setMaxAge(5);
+                    rememberMeCookie.setMaxAge(5);
+                    //add cookies into response
+                    response.addCookie(usernameCookie);
+                    response.addCookie(passwordCookie);
+                    response.addCookie(rememberMeCookie);
+                }
+
+
+                //week 8 code
+               HttpSession session= request.getSession();
+               //check session id
+                System.out.println("session id -->"+session.getId());
+                //set time for session
+                session.setMaxInactiveInterval(10);
+
+               //week 8  change request to session
+                session.setAttribute("user",user);
+                request.getRequestDispatcher("WEB-INF/views/userinfo.jsp").forward(request,response);
             } else {
                 request.setAttribute("message","Username or Password Error!!!");
-                request.getRequestDispatcher("WEB-INFiews/login.jsp").forward(request,response);
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
             }
         } catch (SQLException e) {
             e.printStackTrace();

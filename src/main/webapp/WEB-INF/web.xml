@@ -39,6 +39,22 @@
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.ChenJiudong.week5.demo.LoginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.ChenJiudong.controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <servlet-class>com.ChenJiudong.controller.UpdateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserServlet</servlet-name>
+        <url-pattern>update</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>lo</url-pattern>
@@ -83,10 +99,10 @@
     </context-param>
     <context-param>
         <param-name>url</param-name>
-        <param-value>jdbc:sqlserver://localhost;databaseName=userdb;</param-value>
+        <param-value>jdbc:sqlserver://localhost;databaseName=user db;</param-value>
     </context-param>
     <context-param>
-        <param-name>username</param-name>
+        <param-name>user</param-name>
         <param-value>sa</param-value>
     </context-param>
     <context-param>

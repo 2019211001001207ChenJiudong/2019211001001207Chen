@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class UserDao implements IUserDao{
+
     @Override
     public boolean saveUser(Connection con, User user) throws SQLException {
         String sql="insert into usertable values(?,?,?,?,?,?)";
