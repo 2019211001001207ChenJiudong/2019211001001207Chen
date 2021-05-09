@@ -9,11 +9,11 @@ public class EncondingFilter implements javax.servlet.Filter {
     public void destroy() {
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
 //        System.out.println("-------------------");
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html;charset=utf-8");
-        chain.doFilter(req, resp);
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=utf-8");
+        chain.doFilter(request, response);
     }
 
     public void init(FilterConfig config) throws ServletException {
