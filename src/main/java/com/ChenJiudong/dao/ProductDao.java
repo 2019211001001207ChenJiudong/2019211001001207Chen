@@ -152,7 +152,7 @@ public class ProductDao implements  IProductDao{
     @Override
     public List<Product> findByPrice(double minPrice, double maxPrice, Connection con) throws SQLException {
         List<Product> listuser = null;
-        String sql="select * from Product where price<=ANY(select price from Product) or price>=ANY(select price from Product)";
+        String sql="select * from Product where price<=ANY(select price from Product) or >=ANY(select price from Product)";
         PreparedStatement pt = null;
         try {
             pt = con.prepareStatement(sql);
