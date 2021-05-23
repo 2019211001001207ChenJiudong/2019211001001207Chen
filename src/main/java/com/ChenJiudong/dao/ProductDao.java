@@ -4,10 +4,7 @@ import com.ChenJiudong.model.Product;
 import com.ChenJiudong.model.User;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 public class ProductDao implements  IProductDao{
@@ -95,7 +92,7 @@ public class ProductDao implements  IProductDao{
     @Override
     public Product findById(Integer productId, Connection con) {
         Product product = null;
-        String sql="select * from Product where productId=?";
+        String sql="select * from Product where ProductId=?";
         PreparedStatement pt = null;
         try {
             pt = con.prepareStatement(sql);
@@ -122,8 +119,8 @@ public class ProductDao implements  IProductDao{
 
     @Override
     public List<Product> findByCategoryId(int categoryId, Connection con) {
-        List<Product> listuser = null;
-        String sql="select * from Product where categoryId=?";
+        List<Product> listproduct = null;
+        String sql="select * from Product where CategoryId=?";
         PreparedStatement pt = null;
         try {
             pt = con.prepareStatement(sql);
@@ -141,23 +138,23 @@ public class ProductDao implements  IProductDao{
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setPrice(rs.getDouble("price"));
                 product.setPicture(rs.getBinaryStream("picture"));
-                listuser.add(product);
+                listproduct.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listuser;
+        return listproduct;
     }
 
     @Override
     public List<Product> findByPrice(double minPrice, double maxPrice, Connection con) throws SQLException {
-        List<Product> listuser = null;
-        String sql="select * from Product where price<=ANY(select price from Product) or >=ANY(select price from Product)";
+        List<Product> listproduct = null;
+        String sql="select * from Product where Price between ? and ?";
         PreparedStatement pt = null;
         try {
             pt = con.prepareStatement(sql);
             pt.setDouble(1,maxPrice);
-            pt.setDouble(1,minPrice);
+            pt.setDouble(2,minPrice);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -171,17 +168,17 @@ public class ProductDao implements  IProductDao{
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setPrice(rs.getDouble("price"));
                 product.setPicture(rs.getBinaryStream("picture"));
-                listuser.add(product);
+                listproduct.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listuser;
+        return listproduct;
     }
 
     @Override
     public List<Product> findAll(Connection con) throws SQLException {
-        List<Product> listuser = null;
+        List<Product> listproduct = null;
         String sql="select * from Product ";
         PreparedStatement pt = null;
         try {
@@ -199,18 +196,18 @@ public class ProductDao implements  IProductDao{
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setPrice(rs.getDouble("price"));
                 product.setPicture(rs.getBinaryStream("picture"));
-                listuser.add(product);
+                listproduct.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listuser;
+        return listproduct;
     }
 
     @Override
     public List<Product> findByProductName(String productName, Connection con) throws SQLException {
-        List<Product> listuser = null;
-        String sql="select * from Product where productName=?";
+        List<Product> listproduct = null;
+        String sql="select * from Product where ProductName=?";
         PreparedStatement pt = null;
         try {
             pt = con.prepareStatement(sql);
@@ -228,18 +225,18 @@ public class ProductDao implements  IProductDao{
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setPrice(rs.getDouble("price"));
                 product.setPicture(rs.getBinaryStream("picture"));
-                listuser.add(product);
+                listproduct.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listuser;
+        return listproduct;
     }
 
     @Override
     public List<Product> getPicture(Integer productId, Connection con) throws SQLException {
-        List<Product> listuser = null;
-        String sql="select * from Product where productId=?";
+        List<Product> listproduct = null;
+        String sql="select * from Product where ProductId=?";
         PreparedStatement pt = null;
         try {
             pt = con.prepareStatement(sql);
@@ -257,12 +254,27 @@ public class ProductDao implements  IProductDao{
                 product.setProductDescription(rs.getString("productDescription"));
                 product.setPrice(rs.getDouble("price"));
                 product.setPicture(rs.getBinaryStream("picture"));
-                listuser.add(product);
+                listproduct.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listuser;
+        return listproduct;
     }
+    public byte[] getPictureById(Integer productId, Connection con) throws SQLException {
+        byte[] imgByte = null;
+        String sql = "select Picture from  Product where Productld = ?";
+        PreparedStatement pt = con.prepareStatement(sql);
+        pt.setInt(1, productId);
+        ResultSet rs = pt.executeQuery();
+        while (rs.next()) {
+            Blob blob = rs.getBlob("Picture");
+            imgByte = blob.getBytes(1, (int) blob.length());
+        }
+        System.out.println(imgByte);
+        return imgByte;
+    }
+
 }
+
 

@@ -73,7 +73,7 @@ public class AddProductServlet extends HttpServlet {
             e.printStackTrace();
         }
         if (i>0){
-          //  response.sendRedirect("productList");//next class
+         request.getRequestDispatcher("/WEB-INF/views/admin/productList.jsp");
         }
     }
 
