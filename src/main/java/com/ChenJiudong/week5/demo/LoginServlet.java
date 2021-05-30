@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
 
-@WebServlet(name = "LoginServlet",value = "/Login")
+@WebServlet(name = "LoginServlet",value = "/login")
 public class LoginServlet extends HttpServlet {
     Connection con = null;
     public void init() throws ServletException {

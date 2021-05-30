@@ -15,6 +15,7 @@ public class ProductListServlet extends HttpServlet {
     Connection con=null;
     @Override
     public void init() throws ServletException{
+        super.init();
         con=(Connection)getServletContext().getAttribute("con");
     }
     @Override

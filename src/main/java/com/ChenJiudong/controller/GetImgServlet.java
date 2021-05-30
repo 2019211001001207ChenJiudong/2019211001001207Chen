@@ -14,6 +14,7 @@ import java.sql.SQLException;
 public class GetImgServlet extends HttpServlet {
     Connection con=null;
     public void init()throws ServletException{
+        super.init();
         con=(Connection) getServletContext().getAttribute("con");
     }
     @Override
